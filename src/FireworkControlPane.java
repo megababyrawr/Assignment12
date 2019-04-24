@@ -116,10 +116,15 @@ public class FireworkControlPane extends StackPane
            
            //Step #1: set an appropriate handler object to the buttons and the color picker
            /***to be completed***/
-           
+
+           start.setOnAction(new ButtonHandler());
+           stop.setOnAction(new ButtonHandler());
+           picker.setOnAction(new ColorHandler());
            
            //Step #2: set an appropriate handler object to the sliders
            /***to be completed***/
+
+           speed.setOnAction(new SpeedHandler());
            
 }
 
