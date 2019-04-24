@@ -1,7 +1,7 @@
 // Assignment #: Arizona State University CSE205 #12
-//         Name: Your Name
-//    StudentID: Your ID
-//      Lecture: Your lecture time (e.g., MWF 9:40am)
+//         Name: Zhengjun Li
+//    StudentID: 1216057583
+//      Lecture: T/Th 1:30
 //  Description: The Assignment12 class creates a ControlPane object
 //               on which we can control two panes that show fireworks.
 

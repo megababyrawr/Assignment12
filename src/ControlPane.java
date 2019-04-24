@@ -1,7 +1,7 @@
 // Assignment #: Arizona State University CSE205 #12
-//         Name: Your Name
-//    StudentID: Your ID
-//      Lecture: Your lecture time (e.g., MWF 9:40am)
+//         Name: Zhengjun Li
+//    StudentID: 1216057583
+//      Lecture: T/Th 1:30
 //  Description: The ControlPane class creates 2 firework control panels
 //               with their fireworks with components to control their movement.
 

@@ -1,3 +1,9 @@
+// Assignment #: Arizona State University CSE205 #12
+//         Name: Zhengjun Li
+//    StudentID: 1216057583
+//      Lecture: T/Th 1:30
+//  Description: FireworkPane displays a firework on a black background
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -12,7 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class FireworkPane extends Pane {
+public class FireworkPane extends Pane { //declare members of class
     private double centerX;
     private double centerY;
     private double radius = 25.0;
@@ -24,16 +30,15 @@ public class FireworkPane extends Pane {
     private Timeline timeline1;
 
     public FireworkPane(Color initColor, int width) { //constructor of Firework Pane
-
+        this.setStyle("-fx-background-color: black;");
         color = initColor;
         centerX = width/2;
         centerY = width/2;
         radiusLimit = (width-10)/4.0;
         beamNum = 8;
         angleSize = 360/(beamNum*2);
-        //background should be black
 
-        for (int currentAngle=0; currentAngle <= 360; currentAngle += 2*angleSize)
+        for (int currentAngle=0; currentAngle <= 360; currentAngle += 2*angleSize) //creates arcs based on initial attributes
         {
             Arc arc1 = new Arc(centerX, centerY, radius, radius, currentAngle, angleSize);
             arc1.setFill(color);
@@ -42,9 +47,12 @@ public class FireworkPane extends Pane {
             this.getChildren().add(arc1);
         }
 
-        KeyFrame keyframe1 = new KeyFrame(Duration.millis(500), new FireworkHandler());
 
-        timeline1.setCycleCount(Timeline.INDEFINITE);
+
+        KeyFrame keyframe1 = new KeyFrame(Duration.millis(500), new FireworkHandler()); //creates the keyframe to be used in a timeline
+        timeline1 = new Timeline();
+        timeline1.getKeyFrames().addAll(keyframe1);
+        timeline1.setCycleCount(Timeline.INDEFINITE);       //timeline animation is also started
         timeline1.setRate(20);
         timeline1.play();
 
@@ -67,7 +75,7 @@ public class FireworkPane extends Pane {
 
     public void setBeamNumber(int a) { //changes beam count
         beamNum = a;
-        angleSize = 360.0/(beamNum*2);
+        angleSize = 360/(beamNum*2);
 
     }
 
@@ -76,11 +84,12 @@ public class FireworkPane extends Pane {
 
     }
 
-    private class FireworkHandler implements EventHandler<ActionEvent> {
+    private class FireworkHandler implements EventHandler<ActionEvent> { //listener that is executed everytime a keyframe is finished in the timeline
         public void handle(ActionEvent event) {
             getChildren().clear();
             angleSize = 360/(beamNum*2);
-            for (int currentAngle=0; currentAngle <= 360; currentAngle += 2*angleSize)
+            radius = radius+step;
+            for (int currentAngle=0; currentAngle <= 360; currentAngle += 2*angleSize) //creates new arcs with new 'radius' based on 'step' value
             {
                 Arc arc1 = new Arc(centerX, centerY, radius, radius, currentAngle, angleSize);
                 arc1.setFill(color);

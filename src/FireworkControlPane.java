@@ -1,7 +1,7 @@
 // Assignment #: Arizona State University CSE205 #12
-//         Name: Your Name
-//    StudentID: Your ID
-//      Lecture: Your lecture time (e.g., MWF 9:40am)
+//         Name: Zhengjun Li
+//    StudentID: 1216057583
+//      Lecture: T/Th 1:30
 //  Description: The FireworkControlPane class creates 3 buttons and 2 sliders to
 //               to control the movement of Firework, and also contains a Pane
 //               displaying Firework.
@@ -124,7 +124,8 @@ public class FireworkControlPane extends StackPane
            //Step #2: set an appropriate handler object to the sliders
            /***to be completed***/
 
-           speed.setOnAction(new SpeedHandler());
+           speed.valueProperty().addListener(new SpeedHandler());
+           beam.valueProperty().addListener(new BeamHandler());
            
 }
 
@@ -135,6 +136,12 @@ public class FireworkControlPane extends StackPane
        public void handle(ActionEvent event)
         {
             Object action = event.getSource();
+            if (action==start) {
+                fwPane.resume();
+            }
+            if (action==stop) {
+                fwPane.suspend();
+            }
 
             //Step #3 complete the method here
             /***to be completed***/
@@ -161,6 +168,9 @@ public class FireworkControlPane extends StackPane
          public void changed(ObservableValue<? extends Number> observable,
                              Number oldValue, Number newValue)
          {
+
+             fwPane.setRate(newValue.intValue());
+
              //Step #4 complete the method here
              /***to be completed***/
          }
@@ -175,6 +185,7 @@ public class FireworkControlPane extends StackPane
            public void changed(ObservableValue<? extends Number> observable,
                             Number oldValue, Number newValue)
            {
+               fwPane.setBeamNumber(newValue.intValue());
              //Step #5 complete the method here
              /***to be completed***/
            }
